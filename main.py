@@ -16,6 +16,7 @@ height = 650
 screen = pygame.display.set_mode((width, height))
 screen.fill((255, 255, 255))
 for i in range(Info.initpop):
+    print("Moving and shooting coefs for initial ducks")
     Info.ducks.append(CPUDuck(500, screen))
 cpu = Info.ducks[0]
 Info.currentDuck = 0
@@ -80,15 +81,12 @@ while True:
                      p.eggs[0].y if len(p.eggs) > 0 else screen.get_height() / 2, p.eggs[0].angle if len(p.eggs) > 0 else 0]) or Info.totalTime - cpu.startTime >= 10000:
             playing = False
             cpu.fitness = 1999 - cpu.mindist + (Info.totalTime - cpu.startTime)/1000
-            print(cpu.fitness)
         if isinstance(p, Duck) and p.tick(up, down, mousePos, mouseClick):
             playing = False
             cpu.fitness = 9999 - (Info.totalTime - cpu.startTime)/1000
-            print(cpu.fitness)
         if isinstance(p, TrainingDuck) and p.tick():
             playing = False
             cpu.fitness = 9999 - (Info.totalTime - cpu.startTime)/1000
-            print(cpu.fitness)
         if not playing:
             pauseStart = pygame.time.get_ticks()
             if Info.currentDuck == len(Info.ducks)-1:
@@ -110,9 +108,11 @@ while True:
                                 childmoves.append(Info.ducks[j].movevals[k] + random.randint(-100, 100) / 1000)
                                 if k < 5:
                                     childshoots.append(Info.ducks[j].shootvals[k] + random.randint(-50, 50) / 1000)
+                            print("Moving and shooting coefs for child ducks")
                             newducks.append(CPUDuck(500, Info.ducks[j].screen, Info.ducks[j], childmoves, childshoots))
                             break
                         j += 1
+                print("Adding completely new random duck")
                 newducks.append(CPUDuck(500, screen))
                 Info.ducks = newducks
                 Info.currentDuck = 0
