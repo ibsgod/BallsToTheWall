@@ -15,8 +15,8 @@ width = 1300
 height = 650
 screen = pygame.display.set_mode((width, height))
 screen.fill((255, 255, 255))
+print("Moving and shooting coefs for initial ducks")
 for i in range(Info.initpop):
-    print("Moving and shooting coefs for initial ducks")
     Info.ducks.append(CPUDuck(500, screen))
 cpu = Info.ducks[0]
 Info.currentDuck = 0
@@ -112,8 +112,6 @@ while True:
                             newducks.append(CPUDuck(500, Info.ducks[j].screen, Info.ducks[j], childmoves, childshoots))
                             break
                         j += 1
-                print("Adding completely new random duck")
-                newducks.append(CPUDuck(500, screen))
                 Info.ducks = newducks
                 Info.currentDuck = 0
                 cpu = Info.ducks[Info.currentDuck]
