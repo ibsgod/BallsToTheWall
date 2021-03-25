@@ -17,11 +17,11 @@ screen = pygame.display.set_mode((width, height))
 screen.fill((255, 255, 255))
 print("Moving and shooting coefs for initial ducks")
 for i in range(Info.initpop):
-    Info.ducks.append(CPUDuck(500, screen))
+    Info.ducks.append(CPUDuck(300, screen))
 cpu = Info.ducks[0]
 Info.currentDuck = 0
 # p = Duck(100, screen)
-p = TrainingDuck(100, screen)
+p = TrainingDuck(300, screen)
 Info.playerDuck = p
 up = False
 down = False
@@ -62,9 +62,9 @@ while True:
                 fps -= 10
             if event.key == pygame.K_p:
                 if isinstance(p, Duck):
-                    p = TrainingDuck(100, screen)
+                    p = TrainingDuck(300, screen)
                 else:
-                    p = Duck(100, screen)
+                    p = Duck(300, screen)
                 Info.playerDuck = p
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
@@ -109,14 +109,14 @@ while True:
                                 if k < 5:
                                     childshoots.append(Info.ducks[j].shootvals[k] + random.randint(-50, 50) / 1000)
                             print("Moving and shooting coefs for child ducks")
-                            newducks.append(CPUDuck(500, Info.ducks[j].screen, Info.ducks[j], childmoves, childshoots))
+                            newducks.append(CPUDuck(300, Info.ducks[j].screen, Info.ducks[j], childmoves, childshoots))
                             break
                         j += 1
                 Info.ducks = newducks
                 Info.currentDuck = 0
                 cpu = Info.ducks[Info.currentDuck]
                 cpu.rot = 180
-                cpu.y = 500
+                cpu.y = 300
                 cpu.eggs.clear()
                 cpu.mindist = 9999
                 cpu.startTime = Info.totalTime
@@ -130,7 +130,7 @@ while True:
                 cpu.startTime = Info.totalTime
             genLbl = pygame.font.SysFont("Microsoft Yahei UI Light", 40).render(
                 "Gen " + str(gen) + " Duck " + str(Info.currentDuck + 1), True, (0, 0, 0))
-            p = Duck(100, screen) if isinstance(p, Duck) else TrainingDuck(100, screen)
+            p = Duck(300, screen) if isinstance(p, Duck) else TrainingDuck(300, screen)
             Info.playerDuck = p
             playing = True
 
